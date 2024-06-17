@@ -1,5 +1,5 @@
 from selene import browser, have, command
-import resourses
+import resources
 
 
 class RegistrationPage:
