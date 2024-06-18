@@ -1,6 +1,7 @@
 from selene import browser, have, command
 from data.user import User
 import os
+import resourses
 
 
 class RegistrationPage:
@@ -59,13 +60,9 @@ class RegistrationPage:
         hobby_checkbox.click()
 
     def upload_picture(self, photo):
-        image_folder_path = os.path.join(os.getcwd(), 'tests/resourses')
-        file_path = os.path.join(image_folder_path, photo)
-# сделала доп проверку на наличие файла
-        if not os.path.isfile(file_path):
-            raise FileNotFoundError(f"File not found: {file_path}")
+        browser.element("#uploadPicture").send_keys(resourses.path(photo))
+        return self
 
-        browser.element("#uploadPicture").send_keys(file_path)
     def fill_current_address(self, address):
         browser.element("#currentAddress").type(address).perform(
             command.js.scroll_into_view
