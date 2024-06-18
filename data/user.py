@@ -12,7 +12,6 @@ class User:
     subjects: str
     hobbies: list
     photo: str
-    path: str
     current_address: str
     state: str
     city: str

@@ -1,8 +1,7 @@
 from selene import browser, have, command
-import resourses
 from data.user import User
-
-
+from selene.support.shared import browser
+import os
 class RegistrationPage:
 
     def __init__(self):
@@ -34,6 +33,13 @@ class RegistrationPage:
         browser.element("#userNumber").type(mobile)
         return self
 
+    def hide_ads(self):
+        browser.execute_script("""
+                var ads = document.querySelectorAll('iframe[id^="google_ads_iframe"]');
+                ads.forEach(ad => ad.style.display = 'none');
+            """)
+
+
     def fill_date_of_birth(self, day, month, year):
         browser.element("#dateOfBirthInput").click()
         self.month_of_birth.click()
@@ -47,18 +53,21 @@ class RegistrationPage:
         return self
 
     def fill_hobbies(self, hobbies):
-        browser.all("[for^=hobbies-checkbox]").element_by(have.text(hobbies)).click()
-        return self
+        hobby_checkbox = browser.all("[for^=hobbies-checkbox]").element_by(have.text(hobbies))
+        browser.execute_script("arguments[0].scrollIntoView(true);", hobby_checkbox())
+        hobby_checkbox.click()
 
-    def upload_picture(self, path, photo):
-        browser.element("#uploadPicture").send_keys(resourses.path(photo))
-        return self
+    def upload_picture(self, photo):
+        image_folder_path = os.path.join(os.getcwd(), f'resourses/')
+        file_path = os.path.join(image_folder_path, photo)
+        browser.element("#uploadPicture").send_keys(file_path)
 
     def fill_current_address(self, address):
         browser.element("#currentAddress").type(address).perform(
             command.js.scroll_into_view
         )
         return self
+
 
     def fill_state(self, name):
         browser.element("#state").click()
