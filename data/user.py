@@ -8,9 +8,9 @@ class User:
     email: str
     gender: str
     mobile: str
-    date_of_birth: str
+    date_of_birth: list
     subjects: str
-    hobbies: list
+    hobbies: str
     photo: str
     current_address: str
     state: str

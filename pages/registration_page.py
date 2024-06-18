@@ -1,6 +1,5 @@
 from selene import browser, have, command
 from data.user import User
-from selene.support.shared import browser
 import os
 class RegistrationPage:
 
