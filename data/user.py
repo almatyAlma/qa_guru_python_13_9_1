@@ -10,8 +10,9 @@ class User:
     mobile: str
     date_of_birth: str
     subjects: str
-    hobbies: str
+    hobbies: list
     photo: str
+    path: str
     current_address: str
     state: str
     city: str

@@ -50,7 +50,7 @@ class RegistrationPage:
         browser.all("[for^=hobbies-checkbox]").element_by(have.text(hobbies)).click()
         return self
 
-    def upload_picture(self, photo):
+    def upload_picture(self, path, photo):
         browser.element("#uploadPicture").send_keys(resourses.path(photo))
         return self
 

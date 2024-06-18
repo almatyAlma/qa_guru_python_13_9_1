@@ -13,7 +13,7 @@ def test_registration_form():
         date_of_birth=["29", "July", "1991"],
         subjects="Computer Science",
         hobbies="Sports",
-        photo="rig.jpg",
+        photo="orig.jpg",
         current_address="Current Address",
         state="Haryana",
         city="Karnal",
